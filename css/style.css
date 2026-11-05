@@ -256,6 +256,8 @@ p { margin: 0 0 1em; max-width: 40rem; }
 .facts dt { color: var(--kw); }
 .facts dt::after { content: ":"; color: var(--dim); }
 .facts dd { margin: 0; }
+.facts .plain { margin: 0; padding: 0; list-style: none; }
+.facts .plain li + li { margin-top: .6em; }
 
 /* Заглушки, которые нужно заменить: жёлтая волна, как предупреждение в редакторе */
 .todo {
