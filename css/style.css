@@ -104,13 +104,13 @@ a:hover { text-decoration-thickness: 2px; }
 .body { grid-column: 2; }
 
 /* Номера строк. Каждый блок текста — «строка» файла. */
-.date, .name, .role, h2, .section > p, .subjects a, .steps li, .facts dt,
+.date, .name, .role, h2, .section > p, .subjects a, .subjects .nolink, .tree summary, .steps li, .facts dt,
 .note, .crumbs, .page-title, .page-lead, .works li {
   --lh: 1lh;
   counter-increment: ln;
 }
 .date::before, .name::before, .role::before, h2::before, .section > p::before,
-.subjects a::before, .steps li::before, .facts dt::before, .note::before,
+.subjects a::before, .subjects .nolink::before, .tree summary::before, .steps li::before, .facts dt::before, .note::before,
 .crumbs::before, .page-title::before, .page-lead::before, .works li::before {
   content: counter(ln);
   position: absolute;
@@ -246,6 +246,46 @@ p { margin: 0 0 1em; max-width: 40rem; }
 }
 .subjects .code::before, .subjects .code::after { content: "\""; color: var(--dim); }
 
+/* Дерево специальностей и курсов — сворачиваемые блоки, как в редакторе.
+   Пока блок свёрнут, его строки не нумеруются: номера пересчитываются при раскрытии. */
+.tree { border-top: 1px solid var(--rule); }
+.tree summary {
+  --lh: 1.6em;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 0;
+  cursor: pointer;
+  list-style: none;
+  border-bottom: 1px solid var(--rule);
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary:hover { color: #fff; }
+.chev {
+  flex: none;
+  width: .9em;
+  font: 400 .85rem var(--font-code);
+  color: var(--dim);
+}
+.chev::before { content: "▸"; }
+details[open] > summary .chev::before { content: "▾"; }
+.spec > summary { font-weight: 600; font-size: 1.1rem; color: var(--text); }
+.spec > summary .code { font: 500 .95rem var(--font-code); color: var(--str); white-space: nowrap; }
+.course { margin-left: 20px; border-left: 1px solid var(--rule); padding-left: 16px; }
+.course > summary { font: 500 .95rem var(--font-code); color: var(--kw); padding: 10px 0; }
+.course .subjects { border-top: 0; }
+.course .subjects li:last-child { border-bottom: 0; }
+.subjects .nolink {
+  --lh: calc(1.12rem * 1.35);
+  display: grid;
+  gap: 4px;
+  padding: 16px 0;
+}
+.subjects .nolink h3 { color: var(--text); font-weight: 400; }
+.subjects .nolink .meta { font: italic 400 .85rem var(--font-code); }
+.subjects .nolink .meta::before { content: "// "; }
+.subjects .nolink.empty { --lh: 1.4em; padding: 12px 0; }
+
 /* Правила для студентов — это и правда последовательность шагов */
 .steps { margin: 0; padding-left: 2.2em; max-width: 40rem; }
 .steps li { margin-bottom: .7em; padding-left: .3em; }
@@ -341,7 +381,7 @@ a.todo { color: var(--warn); }
   .home { padding: 10px 12px; }
   .foot { padding-right: 18px; }
   .date::before, .name::before, .role::before, h2::before, .section > p::before,
-  .subjects a::before, .steps li::before, .facts dt::before, .note::before,
+  .subjects a::before, .subjects .nolink::before, .tree summary::before, .steps li::before, .facts dt::before, .note::before,
   .crumbs::before, .page-title::before, .page-lead::before, .works li::before {
     padding-right: 8px;
     font-size: .68rem;
@@ -352,6 +392,8 @@ a.todo { color: var(--warn); }
   .date { font-size: .9rem; }
   .name { margin-top: 16px; }
   .subjects .code { font-size: .8rem; }
+  .course { margin-left: 4px; padding-left: 12px; }
+  .spec > summary { font-size: 1rem; flex-wrap: wrap; }
   .works li { grid-template-columns: 3.5rem minmax(0, 1fr); }
   .works .files, .works .soon { grid-column: 2; }
   .works li:has(> .num:empty) { grid-template-columns: minmax(0, 1fr); }
