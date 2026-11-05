@@ -1,0 +1,256 @@
+/* Персональный сайт преподавателя. Тема: тетрадь в клетку. */
+
+:root {
+  --paper: #f9fbfe;      /* лист */
+  --grid: #dce6f2;       /* клетка */
+  --margin: #c8312b;     /* красная линия полей и пометки учителя */
+  --ink: #2346a6;        /* синяя ручка: ссылки, рукописные строки */
+  --graphite: #23262d;   /* основной текст */
+  --pencil: #5d6470;     /* второстепенный текст */
+
+  --cell: 20px;          /* одна клетка ≈ 5 мм */
+  --gutter: 132px;       /* ширина полей слева */
+
+  --font-text: "Golos Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+  background-position: -1px -1px;
+}
+
+/* Красная линия полей: тянется на всю высоту страницы */
+.sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter);
+  width: 2px;
+  background: var(--margin);
+  opacity: .55;
+  pointer-events: none;
+}
+
+a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--graphite);
+  color: #fff;
+  padding: 8px 14px;
+  z-index: 10;
+}
+.skip:focus { left: 8px; }
+
+/* Сетка страницы: поля + рабочая колонка */
+.sheet {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--gutter) minmax(0, 46rem);
+  column-gap: 32px;
+  padding: 0 24px 0 0;
+}
+
+.row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  column-gap: inherit;
+}
+
+.note {
+  grid-column: 1;
+  padding: 0 12px 0 4px;
+  text-align: right;
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.1;
+  color: var(--margin);
+  hyphens: auto;
+  padding-top: 44px; /* вровень с заголовком раздела */
+}
+
+.body { grid-column: 2; }
+
+/* Шапка */
+.top {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 20px 0;
+  font-size: .95rem;
+}
+.top a { color: var(--graphite); text-decoration: none; }
+.top a:hover, .top a[aria-current="page"] { color: var(--ink); text-decoration: underline; }
+.top nav ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; }
+.home { font-weight: 600; }
+
+/* Первый экран: как начинают страницу в тетради */
+.hero { padding: 60px 0 40px; }
+
+.date {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 2.1rem;
+  line-height: 1.2;
+  color: var(--ink);
+  text-align: center;
+}
+.date span { display: block; }
+
+.name {
+  margin: 56px 0 0;
+  font-size: clamp(2.4rem, 6.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+}
+.name span { display: block; }
+.name .given { font-weight: 400; }
+
+.role {
+  margin: 20px 0 0;
+  max-width: 34rem;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--pencil);
+}
+
+/* Разделы */
+.section { padding: 40px 0 20px; }
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+h3 { margin: 0; font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+p { margin: 0 0 1em; max-width: 40rem; }
+
+/* Список дисциплин: строки тетради, а не карточки */
+.subjects { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--graphite); }
+.subjects li { border-bottom: 1px solid var(--grid); }
+.subjects a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 20px;
+  padding: 18px 0;
+  color: inherit;
+  text-decoration: none;
+}
+.subjects a:hover h3 { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.subjects .meta { grid-column: 1; color: var(--pencil); font-size: .95rem; }
+.subjects .code { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-weight: 600; color: var(--pencil); font-size: .95rem; white-space: nowrap; }
+
+/* Правила для студентов — это и правда последовательность шагов */
+.steps { margin: 0; padding-left: 1.4em; max-width: 40rem; }
+.steps li { margin-bottom: .6em; padding-left: .2em; }
+.steps li::marker { font-weight: 800; color: var(--ink); }
+
+.facts { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 24px; max-width: 40rem; }
+.facts dt { color: var(--pencil); }
+.facts dd { margin: 0; }
+
+/* Заглушки, которые нужно заменить */
+.todo {
+  background: #fff4c2;
+  box-shadow: 0 0 0 2px #fff4c2;
+  border-radius: 2px;
+}
+
+/* Страница дисциплины */
+.crumbs { margin: 40px 0 0; font-size: .95rem; color: var(--pencil); }
+.page-title { margin: 12px 0 8px; font-size: clamp(2rem, 4.6vw, 3rem); font-weight: 800; line-height: 1.08; letter-spacing: -.02em; }
+.page-lead { color: var(--pencil); font-size: 1.15rem; }
+
+.works { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--graphite); }
+.works li {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--grid);
+}
+.works .num { font-weight: 800; color: var(--pencil); }
+/* У лекций нет номера — строка без первой колонки */
+.works .num:empty { display: none; }
+.works li:has(> .num:empty) { grid-template-columns: minmax(0, 1fr) auto; }
+.works .files { display: flex; gap: 14px; font-size: .95rem; white-space: nowrap; }
+.works .soon { color: var(--pencil); font-size: .95rem; }
+
+/* Подвал */
+.foot {
+  grid-column: 2;
+  margin-top: 60px;
+  padding: 20px 0 40px;
+  border-top: 1px solid var(--grid);
+  color: var(--pencil);
+  font-size: .9rem;
+}
+
+/* Плавное появление даты — единственная анимация на сайте */
+@media (prefers-reduced-motion: no-preference) {
+  .date span {
+    clip-path: inset(0 100% 0 0);
+    animation: write 1.1s steps(28, end) forwards;
+  }
+  .date span + span { animation-delay: 1s; }
+  @keyframes write { to { clip-path: inset(0 0 0 0); } }
+}
+
+/* Узкие экраны: поля сужаются, пометки уходят над текстом */
+@media (max-width: 720px) {
+  :root { --gutter: 28px; }
+  body { font-size: 1rem; }
+  .sheet { grid-template-columns: minmax(0, 1fr); padding: 0 20px 0 calc(var(--gutter) + 18px); }
+  .note, .body, .top, .foot { grid-column: 1; }
+  .sheet::before { left: var(--gutter); }
+  .note { text-align: left; padding: 0; font-size: 1.35rem; margin-top: 24px; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .facts dt { margin-top: 12px; font-size: .9rem; }
+  .note + .body .section, .note + .body .hero { padding-top: 8px; }
+  .hero { padding-top: 32px; }
+  .date { font-size: 1.8rem; }
+  .name { margin-top: 36px; }
+  .works li { grid-template-columns: 3.5rem minmax(0, 1fr); }
+  .works .files, .works .soon { grid-column: 2; }
+  .works li:has(> .num:empty) { grid-template-columns: minmax(0, 1fr); }
+  .works li:has(> .num:empty) .soon, .works li:has(> .num:empty) .files { grid-column: 1; }
+}
+
+@media print {
+  body { background: #fff; }
+  .sheet::before, .top nav, .skip { display: none; }
+}

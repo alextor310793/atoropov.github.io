@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Торопов Александр Вениаминович — преподаватель</title>
+  <meta name="description" content="Персональный сайт преподавателя Торопова А.В.: дисциплины, лекции, практические работы, правила сдачи и контакты.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Golos+Text:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+
+  <div class="sheet">
+    <header class="top">
+      <a class="home" href="index.html" aria-current="page">Торопов А.В.</a>
+      <nav aria-label="Разделы сайта">
+        <ul>
+          <li><a href="#disciplines">Дисциплины</a></li>
+          <li><a href="#students">Студентам</a></li>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="row">
+      <div class="body">
+        <section class="hero">
+          <p class="date">
+            <span><time id="today">Добро пожаловать.</time></span>
+            <span>Классная работа.</span>
+          </p>
+          <h1 class="name">
+            <span>Торопов</span>
+            <span class="given">Александр Вениаминович</span>
+          </h1>
+          <p class="role">
+            Преподаватель программирования и информатики,
+            <span class="todo">[полное название колледжа]</span>.
+            Здесь лежат лекции, задания к практическим работам и правила их сдачи.
+          </p>
+        </section>
+      </div>
+
+      <!-- Пометка на полях: короткое объявление красной ручкой. Замените или удалите. -->
+      <aside class="note" aria-label="Объявление">Новое: ПР&nbsp;№4 по PHP</aside>
+      <div class="body">
+        <section class="section" id="disciplines" aria-labelledby="disciplines-h">
+          <h2 id="disciplines-h">Дисциплины</h2>
+          <ul class="subjects">
+            <li>
+              <a href="disciplines/mdk-05-02.html">
+                <h3>МДК.05.02 Разработка кода информационных систем</h3>
+                <span class="meta">Python, PHP, HTML: лекции и практические работы</span>
+                <span class="code">09.02.07</span>
+              </a>
+            </li>
+            <li>
+              <a href="disciplines/osnovy-algoritmizacii.html">
+                <h3>Основы алгоритмизации и программирования</h3>
+                <span class="meta">Алгоритмы и первые программы на Python</span>
+                <span class="code">09.02.07</span>
+              </a>
+            </li>
+            <li>
+              <a href="disciplines/informatika.html">
+                <h3>Информатика</h3>
+                <span class="meta">Строки, списки, работа с файлами</span>
+                <span class="code">09.02.12</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="note" aria-label="Напоминание">Титульный лист обязателен</aside>
+      <div class="body">
+        <section class="section" id="students" aria-labelledby="students-h">
+          <h2 id="students-h">Как сдать практическую работу</h2>
+          <ol class="steps">
+            <li>Откройте страницу дисциплины и скачайте задание. Номер варианта совпадает с вашим номером в списке группы.</li>
+            <li>Выполните работу и оформите отчёт по требованиям из задания: титульный лист, цель, ход работы, скриншоты, вывод.</li>
+            <li>Назовите файл так: <strong>Группа_Фамилия_ПР№</strong>, например ИС-21_Иванов_ПР4.docx.</li>
+            <li>Отправьте отчёт <span class="todo">[куда: электронная почта, СДО колледжа, мессенджер]</span> до срока, указанного в задании.</li>
+            <li>Защитите работу на ближайшем занятии: покажите программу и ответьте на контрольные вопросы.</li>
+          </ol>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-h">
+          <h2 id="about-h">Обо мне</h2>
+          <p class="todo">[Два-три предложения о себе: чем занимаетесь, что важно в вашей работе со студентами.]</p>
+          <dl class="facts">
+            <dt>Должность</dt>
+            <dd>Преподаватель</dd>
+            <dt>Образование</dt>
+            <dd class="todo">[вуз, направление, год окончания]</dd>
+            <dt>Специальности</dt>
+            <dd>09.02.07, 09.02.12</dd>
+            <dt>Повышение квалификации</dt>
+            <dd class="todo">[курсы, год]</dd>
+          </dl>
+        </section>
+
+        <section class="section" id="contacts" aria-labelledby="contacts-h">
+          <h2 id="contacts-h">Контакты</h2>
+          <dl class="facts">
+            <dt>Почта</dt>
+            <dd><a class="todo" href="mailto:example@example.ru">[рабочий адрес почты]</a></dd>
+            <dt>Кабинет</dt>
+            <dd class="todo">[номер кабинета, корпус]</dd>
+            <dt>Консультации</dt>
+            <dd class="todo">[день недели и время]</dd>
+          </dl>
+        </section>
+      </div>
+    </main>
+
+    <footer class="foot">
+      © 2026 Торопов А.В. Материалы сайта предназначены для студентов колледжа.
+    </footer>
+  </div>
+
+  <script src="js/date.js"></script>
+</body>
+</html>

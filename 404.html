@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Страница не найдена — Торопов А.В.</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Golos+Text:wght@400;800&display=swap">
+  <!-- Стили встроены: страница 404 показывается по любому адресу, и относительный путь к css/ там не работает. -->
+  <style>
+    body{margin:0;font-family:"Golos Text","Segoe UI",Arial,sans-serif;color:#23262d;background:#f9fbfe;
+      background-image:linear-gradient(#dce6f2 1px,transparent 1px),linear-gradient(90deg,#dce6f2 1px,transparent 1px);
+      background-size:20px 20px}
+    main{max-width:40rem;margin:0 auto;padding:80px 24px}
+    h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.1;margin:0 0 16px}
+    p{color:#5d6470;font-size:1.15rem;line-height:1.6}
+    a{color:#2346a6}
+    .note{font-family:"Caveat","Segoe Print",cursive;color:#c8312b;font-size:1.6rem;margin:0 0 8px}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="note">Ошибка</p>
+    <h1>Такой страницы нет</h1>
+    <p>Возможно, ссылка устарела или в адресе опечатка. Начните с главной страницы и выберите дисциплину.</p>
+    <p><a id="home" href="/">Открыть главную страницу</a></p>
+  </main>
+  <script>
+    // Если сайт лежит в подпапке (логин.github.io/имя-репозитория/), ведём на главную этой подпапки.
+    (function () {
+      var seg = location.pathname.split("/")[1];
+      if (seg === "atoropov.github.io") {
+        document.getElementById("home").href = "/" + seg + "/";
+      }
+    })();
+  </script>
+</body>
+</html>
