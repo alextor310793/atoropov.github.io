@@ -7,7 +7,7 @@
   <meta name="description" content="Персональный сайт преподавателя Торопова А.В.: дисциплины, лекции, практические работы, правила сдачи и контакты.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Golos+Text:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;800&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -29,10 +29,7 @@
     <main id="main" class="row">
       <div class="body">
         <section class="hero">
-          <p class="date">
-            <span><time id="today">Добро пожаловать.</time></span>
-            <span>Классная работа.</span>
-          </p>
+          <p class="date" aria-hidden="true"><span class="user">toropov@college</span>:~$ <span class="cmd">whoami</span></p>
           <h1 class="name">
             <span>Торопов</span>
             <span class="given">Александр Вениаминович</span>
@@ -45,8 +42,8 @@
         </section>
       </div>
 
-      <!-- Пометка на полях: короткое объявление красной ручкой. Замените или удалите. -->
-      <aside class="note" aria-label="Объявление">Новое: ПР&nbsp;№4 по PHP</aside>
+      <!-- Объявление-комментарий: новая работа, срок сдачи. Замените текст или удалите блок. -->
+      <aside class="note" aria-label="Объявление"><span class="slash" aria-hidden="true">// </span>Новое: ПР&nbsp;№4 по PHP</aside>
       <div class="body">
         <section class="section" id="disciplines" aria-labelledby="disciplines-h">
           <h2 id="disciplines-h">Дисциплины</h2>
@@ -76,7 +73,7 @@
         </section>
       </div>
 
-      <aside class="note" aria-label="Напоминание">Титульный лист обязателен</aside>
+      <aside class="note" aria-label="Напоминание"><span class="slash" aria-hidden="true">// </span>Титульный лист обязателен</aside>
       <div class="body">
         <section class="section" id="students" aria-labelledby="students-h">
           <h2 id="students-h">Как сдать практическую работу</h2>
@@ -123,6 +120,5 @@
     </footer>
   </div>
 
-  <script src="js/date.js"></script>
 </body>
 </html>
