@@ -284,6 +284,7 @@ details[open] > summary .chev::before { content: "▾"; }
 .subjects .nolink h3 { color: var(--text); font-weight: 400; }
 .subjects .nolink .meta { font: italic 400 .85rem var(--font-code); }
 .subjects .nolink .meta::before { content: "// "; }
+.subjects .idx { font: 500 .85em var(--font-code); color: var(--dim); margin-right: .3em; }
 .subjects .nolink.empty { --lh: 1.4em; padding: 12px 0; }
 
 /* Правила для студентов — это и правда последовательность шагов */
